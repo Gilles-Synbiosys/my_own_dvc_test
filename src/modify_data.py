@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("cmd",help="The command to run, typically 'run','plot','test'")
 
 params = yaml.safe_load(open('C:/Users/Gilles/Documents/GitHub/my_own_dvc_test/params.yaml'))['modify_data']
-
+os.makedirs(os.path.join('data', 'modified'), exist_ok=True)
 def add_slope(file_name):
     print('Loading data...')
     data = np.loadtxt(file_name,delimiter=',')
@@ -30,7 +30,7 @@ def add_slope(file_name):
     print('Adding slope')
     y_mod = y + x*slope
     print('data_slope.txt written')
-    np.savetxt("data/data_slope.txt",np.transpose(np.array([x,y])),delimiter=',');
+    np.savetxt("data/modified/data_slope.txt",np.transpose(np.array([x,y])),delimiter=',');
     return y_mod
 
 if __name__ == '__main__':

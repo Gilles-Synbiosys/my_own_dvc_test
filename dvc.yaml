@@ -1,0 +1,29 @@
+stages:
+  prepare_data:
+    cmd: python src/prepare_data.py data/data.txt
+    deps:
+    - data/data.txt
+    - src/prepare_data.py
+    params:
+    - prepare_data.amplitude
+    outs:
+    - data/prepared
+  modify_data:
+    cmd: python src/modify_data.py data/prepared/data_mod.txt
+    deps:
+    - data/prepared/data_mod.txt
+    - src/modify_data.py
+    params:
+    - modify_data.slope
+    outs:
+    - data/modified
+  compare_data:
+    cmd: python src/compare_data.py data/data.txt data/modified/data_slope.txt
+    deps:
+    - data/data.txt
+    - data/modified/data_slope.txt
+    - src/compare_data.py
+    params:
+    - compare_data.gain
+    outs:
+    - data/compared

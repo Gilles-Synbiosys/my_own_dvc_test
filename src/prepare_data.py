@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("cmd",help="The command to run, typically 'run','plot','test'")
 
 params = yaml.safe_load(open('C:/Users/Gilles/Documents/GitHub/my_own_dvc_test/params.yaml'))['prepare_data']
-
+os.makedirs(os.path.join('data', 'prepared'), exist_ok=True)
 
 def get_data_from_txt(file_name):
     print('Loading data...')
@@ -34,8 +34,11 @@ def add_noise(x,y,params):
     amplitude = params['amplitude']
     print('Adding noise')
     y_mod = y+np.random.rand()*amplitude
+    path = os.getcwd()
+    
+    np.savetxt("data/prepared/data_mod.txt",np.transpose(np.array([x,y])),delimiter=',');
     print('data_mod.txt written')
-    np.savetxt("data/data_mod.txt",np.transpose(np.array([x,y])),delimiter=',');
+    
     return y_mod
 
 if __name__ == '__main__':

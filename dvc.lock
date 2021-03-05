@@ -1,0 +1,56 @@
+schema: '2.0'
+stages:
+  prepare_data:
+    cmd: python src/prepare_data.py data/data.txt
+    deps:
+    - path: data/data.txt
+      md5: 950b6260181c61df2873639d7571a3b0
+      size: 51498
+    - path: src/prepare_data.py
+      md5: 787bcb33eca15feb74ccf568f4fb8fff
+      size: 1265
+    params:
+      params.yaml:
+        prepare_data.amplitude: 0.02
+    outs:
+    - path: data/prepared
+      md5: 9988f6bb86ad9af382587f1ace3be386.dir
+      size: 102
+      nfiles: 1
+  modify_data:
+    cmd: python src/modify_data.py data/prepared/data_mod.txt
+    deps:
+    - path: data/prepared/data_mod.txt
+      md5: 2dc79cec9255ec691b3e2bd6ae973c51
+      size: 102
+    - path: src/modify_data.py
+      md5: 5d014bf5b0ea44a4779302a6157774be
+      size: 1108
+    params:
+      params.yaml:
+        modify_data.slope: 0.1
+    outs:
+    - path: data/modified
+      md5: 21a78db06975b9a99247082bb30f5be8.dir
+      size: 102
+      nfiles: 1
+  compare_data:
+    cmd: python src/compare_data.py data/data.txt data/modified/data_slope.txt
+    deps:
+    - path: data/data.txt
+      md5: 950b6260181c61df2873639d7571a3b0
+      size: 51498
+    - path: data/modified/data_slope.txt
+      md5: 7fbced9ba10ad7ebea1c99ad3fe01eef
+      size: 102
+    - path: src/compare_data.py
+      md5: c4f55fae700f472cb2f8535e334c16f7
+      size: 1453
+    params:
+      params.yaml:
+        compare_data.gain: 2
+    outs:
+    - path: data/compared
+      md5: ce43203821eccd477bca4f117c932861.dir
+      size: 102
+      nfiles: 1
