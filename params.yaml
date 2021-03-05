@@ -1,0 +1,8 @@
+prepare_data:
+  amplitude: 0.02
+
+modify_data:
+  slope: 0.1
+
+compare_data:
+  gain: 2
