@@ -11,7 +11,7 @@ stages:
       size: 1265
     params:
       params.yaml:
-        prepare_data.amplitude: 0.02
+        prepare_data.amplitude: 0.022
     outs:
     - path: data/prepared
       md5: 9988f6bb86ad9af382587f1ace3be386.dir
