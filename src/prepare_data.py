@@ -42,7 +42,7 @@ def add_noise(x,y,params):
     return y_mod
 
 if __name__ == '__main__':
-    print('Prog is used as a main')
+
     myargs = parser.parse_args()
     file_name = myargs.cmd
     x,y = get_data_from_txt(file_name)
